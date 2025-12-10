@@ -20,9 +20,9 @@ const Landing = () => {
       color: 'secondary'
     },
     {
-      icon: '⚡',
-      title: t.landing.features.realtime.title,
-      description: t.landing.features.realtime.description,
+      icon: '🎤',
+      title: t.landing.features.audio.title,
+      description: t.landing.features.audio.description,
       color: 'accent'
     },
     {

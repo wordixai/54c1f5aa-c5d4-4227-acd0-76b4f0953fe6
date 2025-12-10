@@ -7,7 +7,7 @@ export const translations = {
     landing: {
       hero: {
         title: '专业的硬件检测工具',
-        subtitle: '一键检测键盘、摄像头等硬件设备，确保系统正常运行',
+        subtitle: '一键检测键盘、摄像头、音频等硬件设备，确保系统正常运行',
         cta: '开始检测',
         demo: '查看演示'
       },
@@ -21,6 +21,10 @@ export const translations = {
         camera: {
           title: '摄像头检测',
           description: '快速测试摄像头功能，实时预览视频流，检测设备状态'
+        },
+        audio: {
+          title: '音频检测',
+          description: '测试麦克风和扬声器，实时音量监控，确保音频正常'
         },
         realtime: {
           title: '实时反馈',
@@ -84,6 +88,31 @@ export const translations = {
         notFound: '未找到摄像头设备',
         unknown: '无法访问摄像头'
       }
+    },
+
+    audio: {
+      title: '音频检测',
+      subtitle: '测试麦克风和扬声器',
+      notStarted: '未启动',
+      requesting: '请求权限中...',
+      active: '音频正常',
+      failed: '检测失败',
+      micTitle: '麦克风测试',
+      speakerTitle: '扬声器测试',
+      startMic: '启动麦克风',
+      stopMic: '停止麦克风',
+      playSound: '播放测试音',
+      stopSound: '停止播放',
+      volumeLevel: '音量级别',
+      speakToTest: '对着麦克风说话以测试',
+      micSuccess: '✓ 麦克风工作正常',
+      speakerSuccess: '✓ 扬声器测试音播放中',
+
+      errors: {
+        denied: '麦克风权限被拒绝',
+        notFound: '未找到音频设备',
+        unknown: '无法访问音频设备'
+      }
     }
   },
 
@@ -95,7 +124,7 @@ export const translations = {
     landing: {
       hero: {
         title: 'Professional Hardware Detection Tool',
-        subtitle: 'One-click detection for keyboard, camera and more. Ensure your system runs smoothly',
+        subtitle: 'One-click detection for keyboard, camera, audio and more. Ensure your system runs smoothly',
         cta: 'Start Detection',
         demo: 'View Demo'
       },
@@ -109,6 +138,10 @@ export const translations = {
         camera: {
           title: 'Camera Detection',
           description: 'Quick camera test, live video preview, device status monitoring'
+        },
+        audio: {
+          title: 'Audio Detection',
+          description: 'Test microphone and speakers, real-time volume monitoring'
         },
         realtime: {
           title: 'Real-time Feedback',
@@ -171,6 +204,31 @@ export const translations = {
         denied: 'Camera permission denied',
         notFound: 'Camera device not found',
         unknown: 'Unable to access camera'
+      }
+    },
+
+    audio: {
+      title: 'Audio Detection',
+      subtitle: 'Test microphone and speakers',
+      notStarted: 'Not Started',
+      requesting: 'Requesting Permission...',
+      active: 'Audio Active',
+      failed: 'Detection Failed',
+      micTitle: 'Microphone Test',
+      speakerTitle: 'Speaker Test',
+      startMic: 'Start Microphone',
+      stopMic: 'Stop Microphone',
+      playSound: 'Play Test Sound',
+      stopSound: 'Stop Sound',
+      volumeLevel: 'Volume Level',
+      speakToTest: 'Speak into the microphone to test',
+      micSuccess: '✓ Microphone is working properly',
+      speakerSuccess: '✓ Speaker test sound playing',
+
+      errors: {
+        denied: 'Microphone permission denied',
+        notFound: 'Audio device not found',
+        unknown: 'Unable to access audio device'
       }
     }
   }

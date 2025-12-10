@@ -1,5 +1,6 @@
 import KeyboardDetector from '../components/KeyboardDetector';
 import CameraDetector from '../components/CameraDetector';
+import AudioDetector from '../components/AudioDetector';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +40,7 @@ const Detector = () => {
         <div className="grid md:grid-cols-2 gap-6">
           <KeyboardDetector />
           <CameraDetector />
+          <AudioDetector />
         </div>
 
         {/* Footer Info */}
