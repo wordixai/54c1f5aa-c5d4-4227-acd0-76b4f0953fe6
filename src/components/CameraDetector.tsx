@@ -74,11 +74,11 @@ const CameraDetector = () => {
   const statusConfig = getStatusConfig();
 
   return (
-    <div className="bg-card border border-border rounded-xl p-6 card-glow animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
-            <span className="text-2xl">📷</span>
+    <div className="glass-card rounded-2xl p-8 animate-fade-in">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center shadow-lg shadow-secondary/10">
+            <span className="text-3xl">📷</span>
           </div>
           <div>
             <h2 className="text-xl font-semibold text-foreground">{t.camera.title}</h2>
@@ -88,8 +88,8 @@ const CameraDetector = () => {
         <StatusBadge status={statusConfig.status} label={statusConfig.label} />
       </div>
 
-      <div className="space-y-4">
-        <div className="aspect-video bg-muted/50 rounded-lg overflow-hidden border border-border relative">
+      <div className="space-y-6">
+        <div className="aspect-video bg-muted/20 rounded-xl overflow-hidden border border-border/50 relative">
           {status === 'active' ? (
             <video
               ref={videoRef}
@@ -101,13 +101,17 @@ const CameraDetector = () => {
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               {status === 'error' ? (
-                <div className="text-center space-y-2">
-                  <div className="text-4xl">❌</div>
+                <div className="text-center space-y-3">
+                  <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mx-auto">
+                    <span className="text-3xl">❌</span>
+                  </div>
                   <p className="text-destructive font-medium">{error}</p>
                 </div>
               ) : (
-                <div className="text-center space-y-2">
-                  <div className="text-4xl">📹</div>
+                <div className="text-center space-y-3">
+                  <div className="w-16 h-16 rounded-full bg-muted/30 flex items-center justify-center mx-auto">
+                    <span className="text-3xl opacity-60">📹</span>
+                  </div>
                   <p className="text-muted-foreground">
                     {status === 'requesting' ? t.camera.requesting2 : t.camera.clickToStart}
                   </p>
@@ -117,19 +121,19 @@ const CameraDetector = () => {
           )}
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           {status !== 'active' ? (
             <button
               onClick={startCamera}
               disabled={status === 'requesting'}
-              className="flex-1 bg-primary text-primary-foreground px-4 py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="flex-1 btn-primary px-6 py-3 rounded-xl font-medium text-foreground disabled:opacity-50 disabled:transform-none disabled:shadow-none"
             >
               {status === 'requesting' ? t.camera.requesting : t.camera.start}
             </button>
           ) : (
             <button
               onClick={stopCamera}
-              className="flex-1 bg-destructive/20 text-destructive px-4 py-2.5 rounded-lg font-medium hover:bg-destructive/30 transition-colors"
+              className="flex-1 bg-destructive/10 text-destructive px-6 py-3 rounded-xl font-medium hover:bg-destructive/20 transition-colors border border-destructive/20"
             >
               {t.camera.stop}
             </button>
@@ -137,7 +141,8 @@ const CameraDetector = () => {
         </div>
 
         {status === 'active' && (
-          <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 text-sm text-accent">
+          <div className="bg-accent/10 border border-accent/30 rounded-xl p-4 text-sm text-accent flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             {t.camera.success}
           </div>
         )}

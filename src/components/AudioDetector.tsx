@@ -15,7 +15,6 @@ const AudioDetector = () => {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const animationRef = useRef<number | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const startMicrophone = async () => {
     try {
@@ -25,7 +24,6 @@ const AudioDetector = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
 
-      // Create audio context and analyser
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       audioContextRef.current = audioContext;
 
@@ -89,7 +87,6 @@ const AudioDetector = () => {
   };
 
   const playTestSound = () => {
-    // Create a simple beep sound using Web Audio API
     if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
     }
@@ -101,7 +98,7 @@ const AudioDetector = () => {
     oscillator.connect(gainNode);
     gainNode.connect(ctx.destination);
 
-    oscillator.frequency.value = 440; // A4 note
+    oscillator.frequency.value = 440;
     oscillator.type = 'sine';
 
     gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
@@ -144,11 +141,11 @@ const AudioDetector = () => {
   const statusConfig = getMicStatusConfig();
 
   return (
-    <div className="bg-card border border-border rounded-xl p-6 card-glow animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
-            <span className="text-2xl">🎤</span>
+    <div className="glass-card rounded-2xl p-8 animate-fade-in md:col-span-2">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center shadow-lg shadow-accent/10">
+            <span className="text-3xl">🎤</span>
           </div>
           <div>
             <h2 className="text-xl font-semibold text-foreground">{t.audio.title}</h2>
@@ -158,43 +155,47 @@ const AudioDetector = () => {
         <StatusBadge status={statusConfig.status} label={statusConfig.label} />
       </div>
 
-      <div className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-8">
         {/* Microphone Section */}
-        <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <span>🎙️</span>
+        <div className="space-y-5">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-3">
+            <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">🎙️</span>
             {t.audio.micTitle}
           </h3>
 
           {micStatus === 'error' && (
-            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3 text-sm text-destructive">
+            <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4 text-sm text-destructive">
               {error}
             </div>
           )}
 
           {micStatus === 'active' ? (
-            <div className="space-y-3">
-              <div className="bg-muted/50 rounded-lg p-4 border border-border">
-                <div className="flex items-center justify-between mb-2">
+            <div className="space-y-4">
+              <div className="bg-muted/20 rounded-xl p-5 border border-border/50">
+                <div className="flex items-center justify-between mb-3">
                   <span className="text-sm text-muted-foreground">{t.audio.volumeLevel}</span>
-                  <span className="text-sm font-mono text-foreground">{Math.round(volumeLevel)}%</span>
+                  <span className="text-sm font-mono text-foreground bg-muted/50 px-2 py-1 rounded">{Math.round(volumeLevel)}%</span>
                 </div>
-                <div className="h-3 bg-muted rounded-full overflow-hidden">
+                <div className="h-4 bg-muted/30 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-accent to-primary transition-all duration-100"
-                    style={{ width: `${volumeLevel}%` }}
+                    className="h-full rounded-full transition-all duration-100"
+                    style={{
+                      width: `${volumeLevel}%`,
+                      background: 'var(--gradient-primary)'
+                    }}
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">{t.audio.speakToTest}</p>
+                <p className="text-xs text-muted-foreground mt-3">{t.audio.speakToTest}</p>
               </div>
 
-              <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 text-sm text-accent">
+              <div className="bg-accent/10 border border-accent/30 rounded-xl p-4 text-sm text-accent flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 {t.audio.micSuccess}
               </div>
 
               <button
                 onClick={stopMicrophone}
-                className="w-full bg-destructive/20 text-destructive px-4 py-2.5 rounded-lg font-medium hover:bg-destructive/30 transition-colors"
+                className="w-full bg-destructive/10 text-destructive px-6 py-3 rounded-xl font-medium hover:bg-destructive/20 transition-colors border border-destructive/20"
               >
                 {t.audio.stopMic}
               </button>
@@ -203,7 +204,7 @@ const AudioDetector = () => {
             <button
               onClick={startMicrophone}
               disabled={micStatus === 'requesting'}
-              className="w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="w-full btn-primary px-6 py-3 rounded-xl font-medium text-foreground disabled:opacity-50 disabled:transform-none disabled:shadow-none"
             >
               {micStatus === 'requesting' ? t.audio.requesting : t.audio.startMic}
             </button>
@@ -211,23 +212,23 @@ const AudioDetector = () => {
         </div>
 
         {/* Speaker Section */}
-        <div className="space-y-4 pt-6 border-t border-border">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <span>🔊</span>
+        <div className="space-y-5">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-3">
+            <span className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">🔊</span>
             {t.audio.speakerTitle}
           </h3>
 
           <button
             onClick={playTestSound}
             disabled={isPlayingSound}
-            className="w-full bg-secondary text-secondary-foreground px-4 py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="w-full bg-secondary/10 text-secondary px-6 py-3 rounded-xl font-medium hover:bg-secondary/20 transition-colors border border-secondary/20 disabled:opacity-50"
           >
             {isPlayingSound ? t.audio.stopSound : t.audio.playSound}
           </button>
 
           {isPlayingSound && (
-            <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-3 text-sm text-secondary flex items-center gap-2">
-              <span className="animate-pulse-glow">🔊</span>
+            <div className="bg-secondary/10 border border-secondary/30 rounded-xl p-4 text-sm text-secondary flex items-center gap-3">
+              <span className="animate-pulse">🔊</span>
               {t.audio.speakerSuccess}
             </div>
           )}

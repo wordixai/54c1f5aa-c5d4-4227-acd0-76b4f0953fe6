@@ -34,11 +34,11 @@ const KeyboardDetector = () => {
   }, []);
 
   return (
-    <div className="bg-card border border-border rounded-xl p-6 card-glow animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-            <span className="text-2xl">⌨️</span>
+    <div className="glass-card rounded-2xl p-8 animate-fade-in">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shadow-lg shadow-primary/10">
+            <span className="text-3xl">⌨️</span>
           </div>
           <div>
             <h2 className="text-xl font-semibold text-foreground">{t.keyboard.title}</h2>
@@ -48,43 +48,48 @@ const KeyboardDetector = () => {
         <StatusBadge status={status} label={status === 'active' ? t.keyboard.detecting : t.keyboard.waiting} />
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {lastKey ? (
-          <div className="bg-muted/50 rounded-lg p-4 border border-border">
-            <div className="flex items-center justify-between mb-2">
+          <div className="bg-muted/30 rounded-xl p-6 border border-border/50 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-4">
               <span className="text-sm text-muted-foreground">{t.keyboard.currentKey}</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-xs text-muted-foreground font-mono">
                 {new Date(lastKey.timestamp).toLocaleTimeString()}
               </span>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="text-4xl font-bold text-primary">{lastKey.key}</div>
-              <div className="flex-1 space-y-1">
-                <div className="text-sm">
-                  <span className="text-muted-foreground">{t.keyboard.keyName}: </span>
-                  <span className="text-foreground font-mono">{lastKey.key}</span>
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 rounded-xl number-badge flex items-center justify-center">
+                <span className="text-3xl font-bold text-foreground">{lastKey.key}</span>
+              </div>
+              <div className="flex-1 space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-muted-foreground w-16">{t.keyboard.keyName}:</span>
+                  <span className="text-foreground font-mono bg-muted/50 px-3 py-1 rounded-lg">{lastKey.key}</span>
                 </div>
-                <div className="text-sm">
-                  <span className="text-muted-foreground">{t.keyboard.keyCode}: </span>
-                  <span className="text-foreground font-mono">{lastKey.code}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-muted-foreground w-16">{t.keyboard.keyCode}:</span>
+                  <span className="text-foreground font-mono bg-muted/50 px-3 py-1 rounded-lg">{lastKey.code}</span>
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          <div className="bg-muted/30 rounded-lg p-8 border border-dashed border-border text-center">
+          <div className="bg-muted/20 rounded-xl p-12 border border-dashed border-border/50 text-center">
+            <div className="w-16 h-16 rounded-full bg-muted/30 flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl opacity-50">⌨️</span>
+            </div>
             <p className="text-muted-foreground">{t.keyboard.placeholder}</p>
           </div>
         )}
 
         {keyHistory.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <h3 className="text-sm font-medium text-muted-foreground">{t.keyboard.recentKeys}</h3>
             <div className="flex flex-wrap gap-2">
               {keyHistory.map((kp, idx) => (
                 <div
                   key={idx}
-                  className="px-3 py-1.5 bg-muted rounded-md text-sm font-mono text-foreground border border-border"
+                  className="px-4 py-2 bg-muted/30 rounded-lg text-sm font-mono text-foreground border border-border/50 hover:bg-muted/50 transition-colors"
                 >
                   {kp.key}
                 </div>
