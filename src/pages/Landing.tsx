@@ -51,6 +51,29 @@ const Landing = () => {
     }
   ];
 
+  const reasons = [
+    {
+      icon: '⚡',
+      title: t.landing.whyChoose.reasons.instant.title,
+      description: t.landing.whyChoose.reasons.instant.description
+    },
+    {
+      icon: '🎯',
+      title: t.landing.whyChoose.reasons.accurate.title,
+      description: t.landing.whyChoose.reasons.accurate.description
+    },
+    {
+      icon: '💰',
+      title: t.landing.whyChoose.reasons.free.title,
+      description: t.landing.whyChoose.reasons.free.description
+    },
+    {
+      icon: '🔒',
+      title: t.landing.whyChoose.reasons.privacy.title,
+      description: t.landing.whyChoose.reasons.privacy.description
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -111,6 +134,36 @@ const Landing = () => {
                 <div className="text-5xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Section */}
+      <section className="py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl font-bold text-foreground">{t.landing.whyChoose.title}</h2>
+            <p className="text-lg text-muted-foreground">{t.landing.whyChoose.subtitle}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {reasons.map((reason, idx) => (
+              <div
+                key={idx}
+                className="bg-card border border-border rounded-xl p-8 card-glow animate-fade-in group"
+                style={{ animationDelay: `${idx * 0.15}s` }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                    {reason.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">{reason.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{reason.description}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

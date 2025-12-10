@@ -35,6 +35,28 @@ export const translations = {
           description: '支持中英文界面切换，满足不同用户需求'
         }
       },
+      whyChoose: {
+        title: '为什么选择硬件检测工具',
+        subtitle: '专业、可靠、易用的硬件诊断方案',
+        reasons: {
+          instant: {
+            title: '即时诊断',
+            description: '无需安装任何软件，浏览器中即可完成所有硬件检测，节省时间成本'
+          },
+          accurate: {
+            title: '精准可靠',
+            description: '基于 Web API 标准，提供准确的硬件状态信息，让问题无处遁形'
+          },
+          free: {
+            title: '完全免费',
+            description: '所有功能完全开放使用，无隐藏收费，无需注册登录'
+          },
+          privacy: {
+            title: '隐私安全',
+            description: '所有检测在本地完成，不上传任何数据，保护您的隐私安全'
+          }
+        }
+      },
       howItWorks: {
         title: '使用流程',
         subtitle: '简单三步，快速完成硬件检测',
@@ -150,6 +172,28 @@ export const translations = {
         multilang: {
           title: 'Multi-language',
           description: 'Support Chinese and English interface switching'
+        }
+      },
+      whyChoose: {
+        title: 'Why Choose Hardware Detection Tool',
+        subtitle: 'Professional, reliable, and easy-to-use hardware diagnostic solution',
+        reasons: {
+          instant: {
+            title: 'Instant Diagnosis',
+            description: 'No software installation required, complete all hardware detection in browser, save time'
+          },
+          accurate: {
+            title: 'Accurate & Reliable',
+            description: 'Based on Web API standards, provides accurate hardware status information'
+          },
+          free: {
+            title: 'Completely Free',
+            description: 'All features are fully open to use, no hidden fees, no registration required'
+          },
+          privacy: {
+            title: 'Privacy & Security',
+            description: 'All detection completed locally, no data upload, protect your privacy'
+          }
         }
       },
       howItWorks: {
