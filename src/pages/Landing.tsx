@@ -20,16 +20,22 @@ const Landing = () => {
       color: 'secondary'
     },
     {
+      icon: '🎤',
+      title: t.landing.features.audio.title,
+      description: t.landing.features.audio.description,
+      color: 'accent'
+    },
+    {
       icon: '⚡',
       title: t.landing.features.realtime.title,
       description: t.landing.features.realtime.description,
-      color: 'accent'
+      color: 'primary'
     },
     {
       icon: '🌐',
       title: t.landing.features.multilang.title,
       description: t.landing.features.multilang.description,
-      color: 'primary'
+      color: 'secondary'
     }
   ];
 
@@ -101,7 +107,7 @@ const Landing = () => {
             <p className="text-lg text-muted-foreground">{t.landing.features.subtitle}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {features.map((feature, idx) => (
               <div
                 key={idx}

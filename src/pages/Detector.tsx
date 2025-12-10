@@ -1,5 +1,6 @@
 import KeyboardDetector from '../components/KeyboardDetector';
 import CameraDetector from '../components/CameraDetector';
+import AudioDetector from '../components/AudioDetector';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +27,7 @@ const Detector = () => {
         </div>
       </header>
 
-      <div className="container max-w-6xl mx-auto px-4 py-12">
+      <div className="container max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12 space-y-4 animate-fade-in">
           <h1 className="text-5xl font-bold text-gradient">{t.title}</h1>
@@ -36,9 +37,10 @@ const Detector = () => {
         </div>
 
         {/* Detection Cards */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <KeyboardDetector />
           <CameraDetector />
+          <AudioDetector />
         </div>
 
         {/* Footer Info */}
