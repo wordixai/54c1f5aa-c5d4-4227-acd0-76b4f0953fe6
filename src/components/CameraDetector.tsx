@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import StatusBadge from './StatusBadge';
+import { useLanguage } from '../contexts/LanguageContext';
 
 type CameraStatus = 'idle' | 'requesting' | 'active' | 'error';
 
 const CameraDetector = () => {
+  const { t } = useLanguage();
   const [status, setStatus] = useState<CameraStatus>('idle');
   const [error, setError] = useState<string>('');
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -27,11 +29,11 @@ const CameraDetector = () => {
       setStatus('error');
       if (err instanceof Error) {
         if (err.name === 'NotAllowedError') {
-          setError('摄像头权限被拒绝');
+          setError(t.camera.errors.denied);
         } else if (err.name === 'NotFoundError') {
-          setError('未找到摄像头设备');
+          setError(t.camera.errors.notFound);
         } else {
-          setError('无法访问摄像头');
+          setError(t.camera.errors.unknown);
         }
       }
     }
@@ -59,13 +61,13 @@ const CameraDetector = () => {
   const getStatusConfig = () => {
     switch (status) {
       case 'requesting':
-        return { status: 'active' as const, label: '请求权限中...' };
+        return { status: 'active' as const, label: t.camera.requesting };
       case 'active':
-        return { status: 'success' as const, label: '摄像头正常' };
+        return { status: 'success' as const, label: t.camera.active };
       case 'error':
-        return { status: 'error' as const, label: '检测失败' };
+        return { status: 'error' as const, label: t.camera.failed };
       default:
-        return { status: 'idle' as const, label: '未启动' };
+        return { status: 'idle' as const, label: t.camera.notStarted };
     }
   };
 
@@ -79,8 +81,8 @@ const CameraDetector = () => {
             <span className="text-2xl">📷</span>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-foreground">摄像头检测</h2>
-            <p className="text-sm text-muted-foreground">测试摄像头功能</p>
+            <h2 className="text-xl font-semibold text-foreground">{t.camera.title}</h2>
+            <p className="text-sm text-muted-foreground">{t.camera.subtitle}</p>
           </div>
         </div>
         <StatusBadge status={statusConfig.status} label={statusConfig.label} />
@@ -107,7 +109,7 @@ const CameraDetector = () => {
                 <div className="text-center space-y-2">
                   <div className="text-4xl">📹</div>
                   <p className="text-muted-foreground">
-                    {status === 'requesting' ? '正在请求权限...' : '点击下方按钮启动摄像头'}
+                    {status === 'requesting' ? t.camera.requesting2 : t.camera.clickToStart}
                   </p>
                 </div>
               )}
@@ -122,21 +124,21 @@ const CameraDetector = () => {
               disabled={status === 'requesting'}
               className="flex-1 bg-primary text-primary-foreground px-4 py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
             >
-              {status === 'requesting' ? '请求中...' : '启动摄像头'}
+              {status === 'requesting' ? t.camera.requesting : t.camera.start}
             </button>
           ) : (
             <button
               onClick={stopCamera}
               className="flex-1 bg-destructive/20 text-destructive px-4 py-2.5 rounded-lg font-medium hover:bg-destructive/30 transition-colors"
             >
-              停止摄像头
+              {t.camera.stop}
             </button>
           )}
         </div>
 
         {status === 'active' && (
           <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 text-sm text-accent">
-            ✓ 摄像头工作正常，视频流已建立
+            {t.camera.success}
           </div>
         )}
       </div>

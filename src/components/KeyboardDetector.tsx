@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import StatusBadge from './StatusBadge';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface KeyPress {
   key: string;
@@ -8,6 +9,7 @@ interface KeyPress {
 }
 
 const KeyboardDetector = () => {
+  const { t } = useLanguage();
   const [status, setStatus] = useState<'idle' | 'active'>('idle');
   const [lastKey, setLastKey] = useState<KeyPress | null>(null);
   const [keyHistory, setKeyHistory] = useState<KeyPress[]>([]);
@@ -39,18 +41,18 @@ const KeyboardDetector = () => {
             <span className="text-2xl">⌨️</span>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-foreground">键盘检测</h2>
-            <p className="text-sm text-muted-foreground">按任意键开始测试</p>
+            <h2 className="text-xl font-semibold text-foreground">{t.keyboard.title}</h2>
+            <p className="text-sm text-muted-foreground">{t.keyboard.subtitle}</p>
           </div>
         </div>
-        <StatusBadge status={status} label={status === 'active' ? '检测中' : '等待输入'} />
+        <StatusBadge status={status} label={status === 'active' ? t.keyboard.detecting : t.keyboard.waiting} />
       </div>
 
       <div className="space-y-4">
         {lastKey ? (
           <div className="bg-muted/50 rounded-lg p-4 border border-border">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-muted-foreground">当前按键</span>
+              <span className="text-sm text-muted-foreground">{t.keyboard.currentKey}</span>
               <span className="text-xs text-muted-foreground">
                 {new Date(lastKey.timestamp).toLocaleTimeString()}
               </span>
@@ -59,11 +61,11 @@ const KeyboardDetector = () => {
               <div className="text-4xl font-bold text-primary">{lastKey.key}</div>
               <div className="flex-1 space-y-1">
                 <div className="text-sm">
-                  <span className="text-muted-foreground">键名: </span>
+                  <span className="text-muted-foreground">{t.keyboard.keyName}: </span>
                   <span className="text-foreground font-mono">{lastKey.key}</span>
                 </div>
                 <div className="text-sm">
-                  <span className="text-muted-foreground">键码: </span>
+                  <span className="text-muted-foreground">{t.keyboard.keyCode}: </span>
                   <span className="text-foreground font-mono">{lastKey.code}</span>
                 </div>
               </div>
@@ -71,13 +73,13 @@ const KeyboardDetector = () => {
           </div>
         ) : (
           <div className="bg-muted/30 rounded-lg p-8 border border-dashed border-border text-center">
-            <p className="text-muted-foreground">按下任意键开始测试...</p>
+            <p className="text-muted-foreground">{t.keyboard.placeholder}</p>
           </div>
         )}
 
         {keyHistory.length > 0 && (
           <div className="space-y-2">
-            <h3 className="text-sm font-medium text-muted-foreground">最近按键</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">{t.keyboard.recentKeys}</h3>
             <div className="flex flex-wrap gap-2">
               {keyHistory.map((kp, idx) => (
                 <div
