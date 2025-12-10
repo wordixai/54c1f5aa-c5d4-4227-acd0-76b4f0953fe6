@@ -9,10 +9,53 @@ The @apply directive should not be used with the group utility class.
 
 @layer base {
   :root {
-   
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 222 47% 11%;
+    --primary-glow: 195 100% 65%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    --gradient-diagnostic: linear-gradient(135deg, hsl(195 100% 50% / 0.1), hsl(217 91% 60% / 0.1));
+    --gradient-status: linear-gradient(90deg, hsl(195 100% 50%), hsl(217 91% 60%));
+    --shadow-glow: 0 0 30px hsl(195 100% 50% / 0.3);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-status);
   }
 
-  .dark {
+  .card-glow {
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
+  .card-glow:hover {
+    box-shadow: var(--shadow-glow);
   }
 }
