@@ -22,10 +22,6 @@ export const translations = {
           title: '摄像头检测',
           description: '快速测试摄像头功能，实时预览视频流，检测设备状态'
         },
-        audio: {
-          title: '音频检测',
-          description: '实时监测麦克风输入，显示音量波形，检测声道信息'
-        },
         realtime: {
           title: '实时反馈',
           description: '即时显示检测结果，提供详细的设备状态信息'
@@ -88,29 +84,6 @@ export const translations = {
         notFound: '未找到摄像头设备',
         unknown: '无法访问摄像头'
       }
-    },
-
-    audio: {
-      title: '音频检测',
-      subtitle: '测试麦克风功能',
-      notStarted: '未启动',
-      requesting: '请求权限中...',
-      active: '麦克风正常',
-      failed: '检测失败',
-      start: '启动麦克风',
-      stop: '停止麦克风',
-      success: '✓ 麦克风工作正常，音频流已建立',
-      clickToStart: '点击下方按钮启动麦克风',
-      requesting2: '正在请求权限...',
-      volume: '音量',
-      device: '设备',
-      channels: '声道数',
-
-      errors: {
-        denied: '麦克风权限被拒绝',
-        notFound: '未找到麦克风设备',
-        unknown: '无法访问麦克风'
-      }
     }
   },
 
@@ -136,10 +109,6 @@ export const translations = {
         camera: {
           title: 'Camera Detection',
           description: 'Quick camera test, live video preview, device status monitoring'
-        },
-        audio: {
-          title: 'Audio Detection',
-          description: 'Real-time microphone monitoring, volume waveform display, channel detection'
         },
         realtime: {
           title: 'Real-time Feedback',
@@ -202,29 +171,6 @@ export const translations = {
         denied: 'Camera permission denied',
         notFound: 'Camera device not found',
         unknown: 'Unable to access camera'
-      }
-    },
-
-    audio: {
-      title: 'Audio Detection',
-      subtitle: 'Test microphone functionality',
-      notStarted: 'Not Started',
-      requesting: 'Requesting Permission...',
-      active: 'Microphone Active',
-      failed: 'Detection Failed',
-      start: 'Start Microphone',
-      stop: 'Stop Microphone',
-      success: '✓ Microphone is working properly, audio stream established',
-      clickToStart: 'Click the button below to start microphone',
-      requesting2: 'Requesting permission...',
-      volume: 'Volume',
-      device: 'Device',
-      channels: 'Channels',
-
-      errors: {
-        denied: 'Microphone permission denied',
-        notFound: 'Microphone device not found',
-        unknown: 'Unable to access microphone'
       }
     }
   }
